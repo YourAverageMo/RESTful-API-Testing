@@ -26,11 +26,9 @@ def get_stock_price(symbol: str):
     response = requests.get(
         url=f"https://finnhub.io/api/v1/quote?symbol={symbol}&token={API_KEY}")
     response.raise_for_status()
-    print(response.status_code, response.text)
-    data = response.json()
+    data = json.loads(response.text)
+    return data['c']
 
-    # with open("stock_data.json", mode="a") as file:
-    #     file.write(f"{data}")
 
 
 # ---------- SELENIUM PART
@@ -40,7 +38,7 @@ class Scraper:
 
     driver = ''
 
-    def setup(self):
+    def setup_scraper(self):
         chrome_driver_path = "./chromedriver.exe"
 
         options = webdriver.ChromeOptions()
@@ -66,10 +64,10 @@ class Scraper:
 # finnhub is handling invalid symbols gracefully
 # also just noticed that symbol must be UPPER
 # TODO make sure to add this to pytest
-# get_stock_price("aapl")
+get_stock_price("AAPL")
 
-scraper = Scraper()
+# scraper = Scraper()
 
-scraper.setup()
-scraper.scrap_stock_price("AAPL")
-scraper.teardown()
+# scraper.setup_scraper()
+# scraper.scrap_stock_price("AAPL")
+# scraper.teardown()

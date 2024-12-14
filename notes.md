@@ -10,4 +10,4 @@ finnhub is mostly a data retrieval service so i and only do GET requests (read)
 
 # Selenium
 
-Midway through setting up selenium i figured that since im not submitting any user input i could just use beautiful soup so im opting to use beautiful soup.
+since this project doesnt really have any ui to interact with there really wasnt any need for selenium. So instead i choose to use selenium as api result verification. In this application i will compare the stock price i receive from finnhub to what yahoo finance says the price is. This will act as Automated framework testing.
