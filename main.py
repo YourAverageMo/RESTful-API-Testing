@@ -1,6 +1,7 @@
 import os
 import json
 import requests
+import timeit
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
@@ -28,7 +29,6 @@ def get_stock_price(symbol: str):
     response.raise_for_status()
     data = json.loads(response.text)
     return data['c']
-
 
 
 # ---------- SELENIUM PART
@@ -64,7 +64,7 @@ class Scraper:
 # finnhub is handling invalid symbols gracefully
 # also just noticed that symbol must be UPPER
 # TODO make sure to add this to pytest
-get_stock_price("AAPL")
+# get_stock_price("AAPL")
 
 # scraper = Scraper()
 
