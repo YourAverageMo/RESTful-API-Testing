@@ -65,11 +65,9 @@ class Scraper:
         self.driver.close()
 
 
-# TODO make sure to add this to pytest
 # get_stock_price("AAPL")
 
 # scraper = Scraper()
-
 # scraper.setup_scraper()
 # price = scraper.scrap_stock_price("AAPL")
 # scraper.teardown()
