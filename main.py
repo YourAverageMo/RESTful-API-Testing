@@ -2,9 +2,12 @@ import os
 import json
 import requests
 import timeit
+from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
+
+load_dotenv()
 
 API_KEY = os.getenv('FINNHUB_API_KEY')
 FAKE_API_KEY = "topsecret"
@@ -27,6 +30,7 @@ def get_stock_price(symbol: str):
     response = requests.get(
         url=f"https://finnhub.io/api/v1/quote?symbol={symbol}&token={API_KEY}")
     response.raise_for_status()
+    # im jsoninfing the response text instead of fetching response.json because response.json for some reason is misformated.
     data = json.loads(response.text)
     return data['c']
 
@@ -61,8 +65,6 @@ class Scraper:
         self.driver.close()
 
 
-# finnhub is handling invalid symbols gracefully
-# also just noticed that symbol must be UPPER
 # TODO make sure to add this to pytest
 # get_stock_price("AAPL")
 
@@ -71,3 +73,5 @@ class Scraper:
 # scraper.setup_scraper()
 # scraper.scrap_stock_price("AAPL")
 # scraper.teardown()
+
+    
