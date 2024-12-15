@@ -2,6 +2,7 @@ import pytest
 import timeit
 import json
 import requests
+import time
 from main import get_stock_price, Scraper, API_KEY, FAKE_API_KEY
 
 real_stocks = [
@@ -55,11 +56,15 @@ def test_api_response_time():
 
 def test_api_average_response_time():
     # this can also be used for simulating high traffic by setting the number_of_runs to something higher like 100. but i plan on adding a separate test for that using locust
+
+    # sleep in case this test runs immediatly after other tests to prevent api limiting.
+    time.sleep(60)
+    
     response_time_threshold = .3  # in seconds
     number_of_runs = 20
-    time = timeit.timeit(lambda: get_stock_price("AAPL"),
+    total_time = timeit.timeit(lambda: get_stock_price("AAPL"),
                          number=number_of_runs)
-    average_time = time / number_of_runs
+    average_time = total_time / number_of_runs
     print(average_time)
     assert average_time < response_time_threshold
 
