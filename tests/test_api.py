@@ -41,12 +41,13 @@ def test_api_response(symbol):
 def test_api_response_time():
     # TODO add sleep to prevent api limiting
     response_time_threshold = .3  # in seconds
-    number_of_runs = 20
+    number_of_runs = 200
     times = []
     while number_of_runs != 0:
-        time = timeit.timeit(lambda: get_stock_price("AAPL"), number=1)
-        times.append(time)
+        run_time = timeit.timeit(lambda: get_stock_price("AAPL"), number=1)
+        times.append(run_time)
         number_of_runs -= 1
+        time.sleep(1)
 
     with open("api_times.json", 'w') as f:
         json.dump(times, f, indent=4)
