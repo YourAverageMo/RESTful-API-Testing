@@ -59,7 +59,7 @@ class Scraper:
         price = self.driver.find_element(
             By.XPATH, "//div[@class='price yf-k4z9w']//section//span").text
 
-        return price
+        return float(price)
 
     def teardown(self):
         self.driver.close()
@@ -71,7 +71,7 @@ class Scraper:
 # scraper = Scraper()
 
 # scraper.setup_scraper()
-# scraper.scrap_stock_price("AAPL")
+# price = scraper.scrap_stock_price("AAPL")
 # scraper.teardown()
 
-    
+# print(price, type(price))
