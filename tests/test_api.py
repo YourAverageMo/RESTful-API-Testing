@@ -27,6 +27,7 @@ def test_api_invalid_key():
         response.raise_for_status()
 
 
+# this test is kind of worthless since with finnhub api unless you give it an invalid api key, your going to get a 200 status code anyway (even with invalid inputs)
 @pytest.mark.parametrize("symbol", real_stocks)
 def test_api_response(symbol):
     response = requests.get(
