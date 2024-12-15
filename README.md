@@ -9,8 +9,8 @@ QA Focused project to test public api's
 - [x] choose api
 - [x] implement automated tests for CRUD operations (invalid in this with Finnhub api)
 - [ ] response structure
-- [ ] status code and error message validation for invalid inputs
+- [x] status code and error message validation for invalid inputs
 - [ ] simulate high traffic 
-- [ ] automation frameworks using selenium (invalid in this project since no ui interaction, but i implemented a workaround)
+- [x] automation frameworks using selenium (invalid in this project since no ui interaction, but i implemented a workaround)
 - [ ] document test plan
 - [ ] visulizations
