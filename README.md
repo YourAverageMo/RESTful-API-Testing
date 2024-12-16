@@ -22,13 +22,13 @@ A QA-focused project to test public APIs. This project involves analyzing the ca
 - [x] simulate high traffic 
 - [x] automation frameworks using selenium (invalid in this project since no ui interaction, but i implemented a workaround)
 - [x] document test plan
-- [x] visulizations
+- [x] visualizations
 
 # Part 1: API Testing
 
-1. **API Choice:** i choose to go with FinnHub for this project, however i learned midway through that finnhub doesnt offer full CRUD capabilities like some other learning api's might have. This is fine as i still test it and validate it with external data using Selenium.
+1. **API Choice:** I chose to go with FinnHub for this project, however I learned midway through that finnhub does not offer full CRUD capabilities like some other learning api's might have. This is fine as I still test it and validate it with external data using Selenium.
 
-2. **Automated Test Validations:** since this api doesn't offer CRUD operations and project-wise there would be no UI to interact with, i choose to combine Part 1.2 and Part 2.1. Instead i will be using selenium to fetch the same stock price from yahoo finance and compare it with the value FinnHub provides as a means of validating API response. This is done in test_api_selenium.py:
+2. **Automated Test Validations:** Since this api doesn't offer CRUD operations and project-wise there would be no UI to interact with, I choose to combine Part 1.2 and Part 2.1. Instead I will be using selenium to fetch the same stock price from yahoo finance and compare it with the value FinnHub provides as a means of validating API response. This is done in test_api_selenium.py:
 
    ![image](https://github.com/user-attachments/assets/7b841464-0a08-46e4-9800-3257d1e70d3f)
 
@@ -44,7 +44,7 @@ A QA-focused project to test public APIs. This project involves analyzing the ca
    there are a few important distinctions i ran into when testing the api's responses with various different inputs.
        
     - I noticed that FinnHub handles invalid requests gracefully not throwing any errors. the symbol provided in the api request must be a valid symbol and in uppercase
-    - The only way i was able to get anything other than a code 200 response was by providing an invalid api key or invalid endpoint. This means that that the input `aapl` still returns a valid response, though not uppercase. Resulting in 0's for all its values in the json response.
+    - The only way i was able to get anything other than a code 200 response was by providing an invalid api key or invalid endpoint. This means that the input `aapl` still returns a valid response, though not uppercase. Resulting in 0's for all its values in the json response.
 
 4. **Simulated High Traffic:**  
    Initially, I planned to use Locust to simulate high traffic by having multiple users access different stock prices. However, I decided against this approach to avoid overloading a public API. The Locust script (`locust.py`) is still included in the `tests` folder and should work as intended. 
