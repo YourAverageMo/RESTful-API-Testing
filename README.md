@@ -28,7 +28,7 @@ A QA-focused project to test public APIs. This project involves analyzing the ca
 
 1. **API Choice:** i choose to go with FinnHub for this project, however i learned midway through that finnhub doesnt offer full CRUD capabilities like some other learning api's might have. This is fine as i still test it and validate it with external data using Selenium.
 
-2. **Automated Test Validations:** since this api doesn't offer CRUD operations and project-wise there would be no UI to interact with i choose to combine Part 1.2 and Part 2.1. Instead i will be using selenium to fetch the same stock price from yahoo finance and compare it with the value FinnHub provides as a means of validating API response. This is done in test_api_selenium.py:
+2. **Automated Test Validations:** since this api doesn't offer CRUD operations and project-wise there would be no UI to interact with, i choose to combine Part 1.2 and Part 2.1. Instead i will be using selenium to fetch the same stock price from yahoo finance and compare it with the value FinnHub provides as a means of validating API response. This is done in test_api_selenium.py:
 
    ![image](https://github.com/user-attachments/assets/7b841464-0a08-46e4-9800-3257d1e70d3f)
 
@@ -56,6 +56,8 @@ A QA-focused project to test public APIs. This project involves analyzing the ca
 # Part 2: Automation Framework
 
 The Selenium tests are integrated into [Part 1.2: Automated Test Validations](#part-1-api-testing). Additional features are incorporated in [Part 3: Reporting](#part-3-reporting).
+
+The HTML Reports are available in the tests folder.
 
 # Part 3: Reporting
 
