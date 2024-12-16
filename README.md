@@ -1,5 +1,6 @@
 # RESTful-API-Testing
-QA Focused project to test public api's. I've been tasked with testing any public api's capabilities and limitations. For this project i chose to go with [Finnhub's](https://finnhub.io/) free api service that provides up-to-date stock information. I was offered creativity in selection of which i use so i figured it would be fun to fiddle with stock api's.
+
+A QA-focused project to test public APIs. This project involves analyzing the capabilities and limitations of a public API. For this task, I selected [Finnhub's](https://finnhub.io/) free API service, which provides up-to-date stock market information. The choice of API was left to my discretion, and I thought it would be interesting to experiment with a stock API.
 
 - [RESTful-API-Testing](#restful-api-testing)
 - [The Plan](#the-plan)
@@ -45,27 +46,30 @@ QA Focused project to test public api's. I've been tasked with testing any publi
     - I noticed that FinnHub handles invalid requests gracefully not throwing any errors. the symbol provided in the api request must be a valid symbol and in uppercase
     - The only way i was able to get anything other than a code 200 response was by providing an invalid api key or invalid endpoint. This means that that the input `aapl` still returns a valid response, though not uppercase. Resulting in 0's for all its values in the json response.
 
-4. **Simulated High Traffic:** 
-   
-   For simulating high traffic originally the plan was to use locust to hit the api with multiple users all accessing different stock prices. However, attacking a public api like this would not be something i would feel comfortable doing myself, and ultimately decided against it as the results from locust would, more or less, be the same as the `test_api_response_time()` test. Regardless the locust.py file is still in the tests folder and should work as is.
-   
-   In the response time function I built a simpler version of what locust would aim to do, that hits the same endpoint a set amount of times per second to gather response time numbers. The API never failed unless you hit it faster than the 60 calls/minute limit so its safe to assume the same would apply to locust.
+4. **Simulated High Traffic:**  
+   Initially, I planned to use Locust to simulate high traffic by having multiple users access different stock prices. However, I decided against this approach to avoid overloading a public API. The Locust script (`locust.py`) is still included in the `tests` folder and should work as intended. 
 
-   On a similar note, I ran into api limiting due to high traffic when running all the tests together. To circumvent this, a few time.sleep() functions were added to key areas of the tests.
+   Instead, I built a simpler response time test (`test_api_response_time()`), which repeatedly hits the same endpoint at a set frequency to gather response time data. The API performed reliably unless the 60 calls/minute rate limit was exceeded. 
+
+   Additionally, when running all tests together, I encountered rate-limiting issues. To mitigate this, I added `time.sleep()` functions at critical points in the test scripts.
 
 # Part 2: Automation Framework
 
-selenium was combined in [Part 1.2 Automated testing](#part-1-api-testing) others will be merged into [Part 3 Reporting](#part-3-reporting)
+The Selenium tests are integrated into [Part 1.2: Automated Test Validations](#part-1-api-testing). Additional features are incorporated in [Part 3: Reporting](#part-3-reporting).
 
 # Part 3: Reporting
 
-**Test plan** and scope is shown in [The Plan](#the-plan).
+**Test plan** and scope are outlined in [The Plan](#the-plan).
 
-**Test objectives** are to test functionality of FinnHub api, validate response with external data, ensure proper positive/negative responses from API (i.e. invalid responses), and to measure API response time.
+**Test Objectives:**  
+- Validate the functionality of the Finnhub API.  
+- Cross-verify API responses with external data.  
+- Ensure proper handling of valid and invalid requests.  
+- Measure API response time.
 
-In terms of **failure/success rates**, API functionality and all tests implemented functioned properly with no abnormalities except in the improper 200 status code with invalid inputs.
-
-With that being said, i **highly recommend** providing better feedback when invalid inputs are provided. In the `aapl` vs `AAPL` example both inputs would result in a status code 200 and a json payload with valid data. Only the uppercase `AAPL`, however, would be a "valid" input and return the correct price of Apple stock. This behavior could lead to confusion for users not being aware of invalid inputs when submitted.
+**Observations:**  
+- API functionality and all implemented tests performed as expected, with no abnormalities except for the improper 200 status code for invalid inputs.  
+- I recommend improving the API feedback for invalid inputs. For example, both `aapl` and `AAPL` return a 200 status code, but only the uppercase `AAPL` yields the correct price for Apple stock. This behavior can confuse users unaware of input requirements.
 
 **Finnhub API Response Time**
 
