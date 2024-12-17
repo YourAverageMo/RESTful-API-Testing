@@ -6,7 +6,7 @@ on:
 jobs:
   update:
     name: Run API Tests
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -21,4 +21,6 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run Tests
+        env:
+          FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
         run: pytest tests/test_api.py
