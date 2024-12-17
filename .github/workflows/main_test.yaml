@@ -1,24 +1,24 @@
 name: Pytest
 on:
-    push:
-        branches:
-            - main
+  push:
+    branches:
+      - main
 jobs:
-    update:
-        name: Run API Tests
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout Code
-              uses: actions/checkout@v4
+  update:
+    name: Run API Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-            - name: Setup Python
-              uses: actions/setup-python@v5
-              with:
-                    python-version: 3.12.6
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.12.6
 
-            - name: Install Dependencies
-              run: |
-                pip install -r requirements.txt
+      - name: Install Dependencies
+        run: |
+          pip install -r requirements.txt
 
-            - name: Run Tests
-              run: python -b -m pytest
+      - name: Run Tests
+        run: pytest tests/test_api.py
