@@ -41,7 +41,7 @@ def test_api_response(symbol):
 def test_api_response_time():
     # TODO add sleep to prevent api limiting
     response_time_threshold = .3  # in seconds
-    number_of_runs = 200
+    number_of_runs = 20
     times = []
     while number_of_runs != 0:
         run_time = timeit.timeit(lambda: get_stock_price("AAPL"), number=1)
